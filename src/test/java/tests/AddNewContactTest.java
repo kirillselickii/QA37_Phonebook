@@ -36,10 +36,10 @@ public class AddNewContactTest extends TestBase {
         Assert.assertEquals(app.getHelperContact().isContactPresent(), "Sonic");
 
     }
-   // @AfterMethod
-   // public void posCondition(){
-    //    app.getHelperContact().returntoHome();
-  //  }
+   @AfterMethod
+    public void posCondition(){
+       app.getHelperContact().returntoHome();
+    }
 
 
 }
