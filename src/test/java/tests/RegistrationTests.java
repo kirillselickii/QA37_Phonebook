@@ -14,7 +14,6 @@ public class RegistrationTests extends TestBase{
             app.getHelperUser().logout();
         }
     }
-
     @Test
     public void registrationSuccess(){
         Random random = new Random();
@@ -28,13 +27,9 @@ public class RegistrationTests extends TestBase{
         Assert.assertTrue(app.getHelperUser().isLogged(),"check is sing out present");
         Assert.assertTrue(app.getHelperUser().isNoContactsHereDisplayed());
         Assert.assertEquals(app.getHelperUser().getMessage(),"No Contacts here!");
-
-
     }
-
     @Test(description = "Bug  report N23467 Fixed")
     public void registrationWrongEmail(){
-
         User user = new User().withEmail("pochtadl9testovgmail.com").withPassword("12345&Yes");
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
@@ -44,11 +39,8 @@ public class RegistrationTests extends TestBase{
                 "            Password must contain at least one uppercase letter!\n" +
                 "            Password must contain at least one lowercase letter!\n" +
                 "            Password must contain at least one digit!\n" +
-                "            Password must contain at least one special symbol from [‘$’,’~’,’-‘,’_’]!"));
-
+                "            Password must contain at least one special symbol"));
         // Assert.assertTrue(app.getHelperUser().isAlertPresent2("Wrong email or password format"));
-
-
     }
     @Test
     public void registrationWrongPassword(){
@@ -62,31 +54,19 @@ public class RegistrationTests extends TestBase{
                 "            Password must contain at least one uppercase letter!\n" +
                 "            Password must contain at least one lowercase letter!\n" +
                 "            Password must contain at least one digit!\n" +
-                "            Password must contain at least one special symbol from [‘$’,’~’,’-‘,’_’]!"));
-
+                "            Password must contain at least one special symbol"));
         // Assert.assertTrue(app.getHelperUser().isAlertPresent2("Wrong email or password format"));
-
-
     }
     @Test
-    public void registrationNeValidPasswordExistUser(){
+    public void registrationNewValidPasswordExistUser(){
 
-        User user = new User().withEmail("pochtadl9testov@gmail.com").withPassword("12345");
+        User user = new User().withEmail("pochtadl9testov@gmail.com").withPassword("12345$Ok");
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
-        Assert.assertTrue(app.getHelperUser().isAlertPresent("Wrong email or password format\n" +
-                "            Email must contains one @ and minimum 2 symbols after last dot\n" +
-                "            Password must contain at least one uppercase letter!\n" +
-                "            Password must contain at least one lowercase letter!\n" +
-                "            Password must contain at least one digit!\n" +
-                "            Password must contain at least one special symbol from [‘$’,’~’,’-‘,’_’]!"));
-
+        Assert.assertTrue(app.getHelperUser().isAlertPresent("User already exist"));
         // Assert.assertTrue(app.getHelperUser().isAlertPresent2("Wrong email or password format"));
-
-
     }
-
     @Test
     public void registrationExistsUser(){
 

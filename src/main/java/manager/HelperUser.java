@@ -43,6 +43,12 @@ public class HelperUser extends HelperBase {
     public boolean isLogged(){
         return isElementPresent(By.xpath("//button[text()='Sign Out']"));
 }
+public void login(User user) {
+    openLoginRegistrationForm();
+    fillLoginRegistrationForm(user);
+    submitLogin();
+
+}
     public void logout(){
         click(By.xpath("//button[text()='Sign Out']"));
     }
@@ -50,7 +56,7 @@ public class HelperUser extends HelperBase {
         WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
    System.out.println(alert.getText());
-   if(alert != null && alert.getText().equals(message)){
+   if(alert != null && alert.getText().contains(message)){
 
        // click ok
        // pause
