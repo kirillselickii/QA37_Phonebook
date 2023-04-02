@@ -33,7 +33,7 @@ public class AddNewContactTest extends TestBase {
         app.getHelperContact().openAddContactForm();
         app.getHelperContact().fillAddContactForm(contact);
         app.getHelperContact().submitAddContactForm();
-        Assert.assertEquals(app.getHelperContact().isContactPresent(), "Sonic");
+        Assert.assertTrue(app.getHelperContact().isContactPresent(), "Sonic");
 
     }
    @AfterMethod
