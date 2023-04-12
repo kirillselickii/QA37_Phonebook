@@ -1,7 +1,6 @@
 package manager;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -28,7 +27,7 @@ public class ApplicationManager {
         return helperUser;
     }
 
-    public HelperContact getHelperContact(){return helperContact;}
+    public HelperContact helperContact(){return helperContact;}
     public void stop(){
     wd.quit();
     }

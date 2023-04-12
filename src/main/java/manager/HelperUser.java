@@ -19,6 +19,7 @@ public class HelperUser extends HelperBase {
         WebElement loginTab = wd.findElement(By.cssSelector("a[href='/login']"));
         // xpath  a[text()='LOGIN']
         loginTab.click();
+        click(By.cssSelector("a[href='/login']"));
     }
     public void fillLoginRegistrationForm(String email, String password){
      //  WebElement emailInput = wd.findElement(By.name("email"));
@@ -43,15 +44,16 @@ public class HelperUser extends HelperBase {
     public boolean isLogged(){
         return isElementPresent(By.xpath("//button[text()='Sign Out']"));
 }
-public void login(User user) {
+
+    public void login(User user) {
     openLoginRegistrationForm();
     fillLoginRegistrationForm(user);
     submitLogin();
-
 }
     public void logout(){
         click(By.xpath("//button[text()='Sign Out']"));
     }
+
     public boolean isAlertPresent(String message){
         WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
@@ -76,10 +78,8 @@ public void login(User user) {
         return res;
     }
     public String getMessage(){
-
         WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.cssSelector(".contact-page_message__2qafk>h1"))));
-
         return wd.findElement(By.cssSelector(".contact-page_message__2qafk>h1")).getText();
     }
 }
